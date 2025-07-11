@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            logger-level: full
+            read-timeout: 2000   # 默认feign调用超时时间
+          product-feignclient:
+#            response-interceptor: # 配置请求拦截器， 也可以使用注入Bean的形式配置
+#             com.hureru.order.Interceptor.XTokenRequestInterceptor
+            read-timeout: 5000   # 指定 feign 客户端类 超时时间
