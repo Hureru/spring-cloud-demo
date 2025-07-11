@@ -10,3 +10,7 @@ spring:
 #            response-interceptor: # 配置请求拦截器， 也可以使用注入Bean的形式配置
 #             com.hureru.order.Interceptor.XTokenRequestInterceptor
             read-timeout: 5000   # 指定 feign 客户端类 超时时间
+
+feign:
+  sentinel:
+    enabled: true
