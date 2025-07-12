@@ -1,6 +1,7 @@
 package com.hureru.order.service.Impl;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.hureru.order.bean.Order;
 import com.hureru.order.feign.ProductFeignClient;
 import com.hureru.order.service.OrderService;
@@ -29,7 +30,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private ProductFeignClient productFeignClient;
 
-    @SentinelResource(value = "createOrder")
+    @SentinelResource(value = "createOrder", blockHandler = "createOrderFallback")
     @Override
     public Order getOrderByUserIdAndProductId(Long userId, Long productId) {
 //        Product product = getProductFromRemoteWithLoadBalancerAnnotation(productId);
@@ -43,6 +44,17 @@ public class OrderServiceImpl implements OrderService {
         order.setAddress("五指山");
         // 商品列表
         order.setProductList(List.of(product));
+        return order;
+    }
+
+    // 兜底回调
+    public Order createOrderFallback(Long userId, Long productId, BlockException e){
+        Order order = new Order();
+        order.setId(0);
+        order.setTotalAmount(new BigDecimal("0"));
+        order.setUserId(userId);
+        order.setNickName("未知用户");
+        order.setAddress("错误信息：" + e.getClass());
         return order;
     }
 
