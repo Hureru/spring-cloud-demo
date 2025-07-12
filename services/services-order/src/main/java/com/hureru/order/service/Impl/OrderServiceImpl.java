@@ -1,5 +1,6 @@
 package com.hureru.order.service.Impl;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.hureru.order.bean.Order;
 import com.hureru.order.feign.ProductFeignClient;
 import com.hureru.order.service.OrderService;
@@ -28,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private ProductFeignClient productFeignClient;
 
-
+    @SentinelResource(value = "createOrder")
     @Override
     public Order getOrderByUserIdAndProductId(Long userId, Long productId) {
 //        Product product = getProductFromRemoteWithLoadBalancerAnnotation(productId);

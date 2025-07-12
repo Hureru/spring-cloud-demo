@@ -10,6 +10,10 @@ spring:
 #            response-interceptor: # 配置请求拦截器， 也可以使用注入Bean的形式配置
 #             com.hureru.order.Interceptor.XTokenRequestInterceptor
             read-timeout: 5000   # 指定 feign 客户端类 超时时间
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+      eager: true  # 默认 false 懒加载，请求后才注册；true：启动服务就注册
 
 feign:
   sentinel:
