@@ -43,10 +43,13 @@ public class OrderController {
     @GetMapping("/seckill")
     @SentinelResource(value = "seckill-order", fallback = "seckillFallback")
     public Order seckill(@RequestParam("userId") Long userId, @RequestParam("productId") Long productId) {
-        return orderServiceImpl.getOrderByUserIdAndProductId(userId , Long.MAX_VALUE);
+        Order order = orderServiceImpl.getOrderByUserIdAndProductId(userId, productId);
+        order.setId(Integer.MAX_VALUE);
+        return order;
     }
 
-    public Order seckillFallback(Long userId, Long productId, BlockException e) {
+    public Order seckillFallback(Long userId, Long productId, Throwable e) {  // 当 SentinelResource 设置 fallback 时获取的异常 应该是 Throwable 所有异常才能正常执行兜底回调
+        // 设置为 blockHandler 时，才获取 BlockException 异常
         Order order = new Order();
         order.setId(0);
         order.setTotalAmount(new BigDecimal("0"));
