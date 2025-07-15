@@ -19,7 +19,7 @@ spring:
           order: 1
 
         - id: bing-route
-          uri: https://www.bing.com
+          uri: https://www.bing.com/
           predicates:
             - name: Path
               args:
@@ -29,3 +29,8 @@ spring:
               args:
                 param: q
                 regexp: haha
+            - Vip=user,zhengyitao
+#            - name: Vip
+#              args:
+#                param: user
+#                value: zhengyitao
