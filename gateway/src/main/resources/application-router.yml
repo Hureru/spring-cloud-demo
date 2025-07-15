@@ -1,0 +1,31 @@
+# 使用配置文件进行网关路由配置
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: order-route
+          uri: lb://services-order
+          predicates:
+            - Path=/api/order/**
+#          filters:
+#            -
+#          metadata:
+#            hello: world
+          order: 0
+        - id: product-route
+          uri: lb://services-product
+          predicates:
+            - Path=/api/product/**
+          order: 1
+
+        - id: bing-route
+          uri: https://www.bing.com
+          predicates:
+            - name: Path
+              args:
+                patterns: /search
+                matchTrailingSlash: true
+            - name: Query
+              args:
+                param: q
+                regexp: haha

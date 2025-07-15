@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(value = "services-product", contextId = "product-feignclient", fallback = ProductFeignClientFallback.class) // contextId 用于在配置OpenFeign文件时使用，默认是value值
 public interface ProductFeignClient {
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/api/product/product/{id}")
     Product getProduct(@PathVariable("id") Long productId);
 }
