@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 
 //@RefreshScope // 配置自动刷新功能
 @RestController
-@RequestMapping("/api/order")
+//@RequestMapping("/api/order")
 public class OrderController {
 
     private final OrderServiceImpl orderServiceImpl;

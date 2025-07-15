@@ -7,8 +7,8 @@ spring:
           uri: lb://services-order
           predicates:
             - Path=/api/order/**
-#          filters:
-#            -
+          filters:
+            - RewritePath=/api/order/?(?<segment>.*), /$\{segment}
 #          metadata:
 #            hello: world
           order: 0
@@ -16,6 +16,8 @@ spring:
           uri: lb://services-product
           predicates:
             - Path=/api/product/**
+          filters:
+            - RewritePath=/api/product/?(?<segment>.*), /$\{segment}
           order: 1
 
         - id: bing-route
@@ -34,3 +36,4 @@ spring:
 #              args:
 #                param: user
 #                value: zhengyitao
+          order: 2
