@@ -13,6 +13,10 @@
     <modules>
         <module>services-product</module>
         <module>services-order</module>
+        <module>seata-storage</module>
+        <module>seata-order</module>
+        <module>seata-business</module>
+        <module>seata-account</module>
     </modules>
 
     <artifactId>services</artifactId>
@@ -24,6 +28,11 @@
     </properties>
 
     <dependencies>
+<!--        分布式事务-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+        </dependency>
 <!--        服务保护 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
