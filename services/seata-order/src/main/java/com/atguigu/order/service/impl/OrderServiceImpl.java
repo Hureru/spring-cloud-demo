@@ -14,7 +14,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     OrderTblMapper orderTblMapper;
 
-
+    @Transactional
     @Override
     public OrderTbl create(String userId, String commodityCode, int orderCount) {
         //1、计算订单价格

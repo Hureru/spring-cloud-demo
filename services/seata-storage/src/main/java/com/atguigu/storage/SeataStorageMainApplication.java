@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 
+@EnableTransactionManagement
 @MapperScan("com.atguigu.storage.mapper")
 @EnableDiscoveryClient
 @SpringBootApplication

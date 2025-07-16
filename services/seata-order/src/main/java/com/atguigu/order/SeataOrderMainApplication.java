@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 
+@EnableTransactionManagement
 @MapperScan("com.atguigu.order.mapper")
 @EnableDiscoveryClient
 @SpringBootApplication

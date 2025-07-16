@@ -12,7 +12,7 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     AccountTblMapper accountTblMapper;
 
-      //本地事务
+    @Transactional  //本地事务
     @Override
     public void debit(String userId, int money) {
         // 扣减账户余额
