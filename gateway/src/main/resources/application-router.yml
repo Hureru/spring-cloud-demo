@@ -9,6 +9,7 @@ spring:
             - Path=/api/order/**
           filters:
             - RewritePath=/api/order/?(?<segment>.*), /$\{segment}
+#            - AddResponseHeader=X-Response-ABC,123
 #          metadata:
 #            hello: world
           order: 0
@@ -37,3 +38,5 @@ spring:
 #                param: user
 #                value: zhengyitao
           order: 2
+      default-filters:
+        - AddResponseHeader=X-Response-ABC,123
