@@ -10,6 +10,7 @@ spring:
           filters:
             - RewritePath=/api/order/?(?<segment>.*), /$\{segment}
 #            - AddResponseHeader=X-Response-ABC,123
+            - OnceToken=X-Response-Token, jwt
 #          metadata:
 #            hello: world
           order: 0
