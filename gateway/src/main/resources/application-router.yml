@@ -2,6 +2,12 @@
 spring:
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origin-patterns: '*'
+            allowed-headers: '*'
+            allowed-methods: '*'
       routes:
         - id: order-route
           uri: lb://services-order
