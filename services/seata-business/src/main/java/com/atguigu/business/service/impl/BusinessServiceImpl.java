@@ -4,6 +4,7 @@ import com.atguigu.business.feign.OrderFeignClient;
 import com.atguigu.business.feign.StorageFeignClient;
 import com.atguigu.business.service.BusinessService;
 import org.apache.seata.spring.annotation.GlobalTransactional;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,14 +12,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class BusinessServiceImpl implements BusinessService {
 
-
+    @Autowired
+    StorageFeignClient storageFeignClient;
+    @Autowired
+    OrderFeignClient orderFeignClient;
 
     @Override
     public void purchase(String userId, String commodityCode, int orderCount) {
-        //TODO 1. 扣减库存
+        //1. 扣减库存
+        storageFeignClient.deduct(commodityCode, orderCount);
 
-
-        //TODO 2. 创建订单
-
+        //2. 创建订单
+        orderFeignClient.create(userId, commodityCode, orderCount);
     }
 }

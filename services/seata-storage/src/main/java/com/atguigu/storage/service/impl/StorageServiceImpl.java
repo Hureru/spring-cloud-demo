@@ -16,8 +16,8 @@ public class StorageServiceImpl implements StorageService {
     @Override
     public void deduct(String commodityCode, int count) {
         storageTblMapper.deduct(commodityCode, count);
-        if (count == 5) {
-            throw new RuntimeException("库存不足");
-        }
+//        if (count == 5) {
+//            throw new RuntimeException("库存不足");
+//        }
     }
 }
